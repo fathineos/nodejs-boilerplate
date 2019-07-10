@@ -1,0 +1,62 @@
+{
+  "name": "txinsights",
+  "version": "1.0.0",
+  "description": "Transifex service to parse application logs into a centralized place. The logs will enhanced with Transifex Domain information in order to provide more insights.",
+  "repository": "https://github.com/transifex/txinsights",
+  "main": "worker.js",
+  "scripts": {
+    "coverage": "NODE_ENV=test nyc mocha --timeout 5000",
+    "start-worker": "node ./src/worker.js",
+    "start-worker-dev": "nodemon -L -e js,yml --watch ./src --watch ./config ./src/worker.js",
+    "test": "NODE_ENV=test mocha --timeout 5000"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "Transifex",
+  "mocha": {
+    "diff": true,
+    "inline-diffs": true,
+    "exit": true,
+    "check-leaks": true,
+    "retries": 0,
+    "extension": [
+      "js"
+    ],
+    "spec": "tests/**/*.spec.js",
+    "inspect": true,
+    "reporter": "spec"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": false,
+    "lines": 90,
+    "include": [
+      "src/**/*.js"
+    ],
+    "reporter": [
+      "text"
+    ],
+    "skip-full": true
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.7.1",
+    "express": "^4.17.1",
+    "express-prom-bundle": "^6.0.0",
+    "lodash": "^4.7.15",
+    "nconf": "^0.10.0",
+    "nconf-yaml": "^1.0.2",
+    "prom-client": "^12.0.0",
+    "sqs-consumer": "^5.4.0",
+    "winston": "^3.2.1",
+    "winston-sentry-raven-transport": "^1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
+    "sinon": "^9.0.2",
+    "supertest": "^4.0.2"
+  }
+}

@@ -1,0 +1,22 @@
+# cf. https://docs.google.com/document/d/115I55MtZqun-fO4kuquMINZ0Kqb5dZZGqy9WFT47T20
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks.git
+  rev: v3.1.0
+  hooks:
+  -   id: check-added-large-files
+  -   id: check-json
+  -   id: check-merge-conflict
+  -   id: check-yaml
+      exclude: ^helm/
+  -   id: end-of-file-fixer
+      files: \.js$
+  -   id: trailing-whitespace
+      files: \.js$
+- repo: https://github.com/pre-commit/mirrors-eslint
+  rev: v7.2.0
+  hooks:
+  -   id: eslint
+      additional_dependencies:
+      -   eslint@7.2.0
+      -   eslint-plugin-promise@4.2.1
+      -   eslint-plugin-standard@4.0.1

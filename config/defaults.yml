@@ -1,0 +1,12 @@
+app:
+  port: 8080
+elasticsearch:
+  max_content_size: 10000000
+log:
+  transports:
+    console:
+      level: info
+metrics:
+  port: 9090
+sqs:
+  region: 'eu-west-1'

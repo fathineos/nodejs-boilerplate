@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  txinsights-worker:
+    image: txinsights:${IMAGE_TARGET_TAG:-devel}
+    depends_on:
+      - txinsights-elasticsearch
+    volumes:
+      - ./config/:/usr/app/config
+      - ./src/:/usr/app/src
+      - ./tests:/usr/app/tests
+      - ./package-lock.json:/usr/app/package-lock.json
+    env_file: docker/docker-compose.env
+    environment:
+      - AWS_SECRET_ACCESS_KEY=whatever
+      - AWS_ACCESS_KEY_ID=whatever
+      - APP__NAME=txinsights-worker
+    command: "run start-worker-dev"
+    stdin_open: true
+    tty: true
+
+  txinsights-elasticsearch:
+    image: elasticsearch:1.7-alpine
+    environment:
+      - HTTP_PORT=9200

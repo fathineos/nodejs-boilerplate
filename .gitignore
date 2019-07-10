@@ -1,0 +1,3 @@
+docker/volumes/elasticsearch/data/*
+docker-compose.override.yml
+node_modules/

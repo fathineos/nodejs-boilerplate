@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  txinsights-worker:
+    ports:
+      - 127.0.0.1:8010:8080
+      - 127.0.0.1:9093:9090
+    environment:
+      - NODE_ENV=development
+      - SQS__QUEUE_URL=http://localstack:4576/queue/metrics-sqs-prod

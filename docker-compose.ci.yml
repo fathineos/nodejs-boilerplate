@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  txinsights-worker:
+    depends_on:
+      - txinsights-localstack
+    environment:
+      - AWS_SECRET_ACCESS_KEY=whatever
+      - AWS_ACCESS_KEY_ID=whatever
+      - SQS__QUEUE_URL=http://txinsights-localstack:4576/queue/metrics-sqs-prod
+
+  txinsights-localstack:
+    image: localstack/localstack-light:0.11.2
+    environment:
+      - DEFAULT_REGION=eu-west-1
+      - SERVICES=sqs
+    volumes:
+      -  ./docker/localstack.sh:/docker-entrypoint-initaws.d/localstack.sh
+
+  pre-commit:
+    image: transifex/pre-commit
+    volumes:
+      - /tmp/pre-commit/txinsights/cache:/root/.cache/pre-commit
+      - .:/app

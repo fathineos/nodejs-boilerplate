@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+  gs-web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      target: development
+    container_name: globalsearch_web
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./src/:/usr/app/src
+    ports:
+      - 127.0.0.1:8009:8009
+    stdin_open: true
+    tty: true
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./docker/volumes/elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+      - 19200:9200
+
+  pre-commit:
+    image: transifex/pre-commit
+    volumes:
+      - /tmp/pre-commit/global-search/cache:/root/.cache/pre-commit
+      - .:/app

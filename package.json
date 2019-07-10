@@ -1,0 +1,23 @@
+{
+  "name": "some_service",
+  "version": "1.0.0",
+  "description": "Some service",
+  "repository": "https://github.com/some_org/some_repo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "lint": "eslint ./src"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "elasticsearch": "^16.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}

@@ -1,0 +1,4 @@
+.git
+docker/volumes
+node_modules
+npm-debug

@@ -10,6 +10,7 @@ services:
       - elasticsearch
     volumes:
       - ./src/:/usr/app/src
+      - ./tests:/usr/app/tests
     ports:
       - 127.0.0.1:8009:8009
     stdin_open: true

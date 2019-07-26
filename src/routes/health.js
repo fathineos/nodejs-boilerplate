@@ -1,10 +1,12 @@
-const express = require('express');
-const router = express.Router();
 const elasticsearch = require('elasticsearch');
+const express = require('express');
+const nconf = require('../config');
+const router = express.Router();
 
 router.get('', async (req, res) => {
   var client = new elasticsearch.Client({
-    host: 'elasticsearch:9200',
+    host: nconf.get('elasticsearch:host') + ':' +
+      nconf.get('elasticsearch:port'),
     log: 'trace',
   });
   client.ping({

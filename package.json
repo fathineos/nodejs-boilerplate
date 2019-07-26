@@ -15,7 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
-    "elasticsearch": "^16.3.0"
+    "elasticsearch": "^16.3.0",
+    "lodash": "^4.7.14",
+    "nconf": "^0.10.0",
+    "nconf-yaml": "^1.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

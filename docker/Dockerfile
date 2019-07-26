@@ -11,6 +11,7 @@ COPY --chown=node:node package*.json /usr/app/
 
 RUN npm install -g --only=production /usr/app
 
+COPY --chown=node:node config /usr/app/config
 COPY --chown=node:node ./src /usr/app/src
 
 WORKDIR /usr/app
